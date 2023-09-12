@@ -6,7 +6,7 @@ const repositoryBD = require("./repositoryBD");
 const mercadopago = require('mercadopago');
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 
 // Agrega credenciales
 mercadopago.configure({
