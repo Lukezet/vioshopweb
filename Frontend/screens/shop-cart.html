@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@100;200;300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="shop-cart-styles.css">
+    <title>Shop-Cart</title>
+</head>
+<body>
+    <!-- <header> -->
+    <main>
+    <nav class="nav-menu">
+        <div class="search">
+            <button><img src="../assets/search-black.svg" alt="Buscar"></button>
+        </div>
+        <ul class="menu">
+            <li><a href="#">Botas</a></li>
+            <li><a href="#">Borcegos</a></li>
+            <li class="brand-name"><img src="../assets/VIONZAletrasNegro.svg" alt="Logo"></li>
+            <li><a href="#">Texanas</a></li>
+            <li><a href="#">Zapatillas</a></li>
+        </ul>
+        <div class="cart">
+            <img src="../assets/bag.svg" alt="Carrito">
+        </div>
+    </nav>
+    <div class="nav-mobile">
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="brand-name2">
+            <img src="../assets/VIONZAletrasNegro.svg" alt="Logo">
+        </div>
+        <div class="cart2">
+            <img src="../assets/bag.svg" alt="Carrito">
+        </div>
+    </div>
+    <!-- </header> -->
+    <div class="shop-cart">
+        <section id="field-name" class="field-name">
+            <label >PRODUCTOS</label>
+            <label >PRECIO</label>
+            <label >CANTIDAD</label>
+            <label >SUBTOTAL</label>
+            <label >ELIMINAR</label>
+        </section>
+        <div class="table-detail" id="table-detail">
+            <!-- Here will be the products that we add to the shopping cart -->
+        </div>
+        <div id="order-shipping" class="order-shipping">
+            <h1>DATOS DE ENVÍO</h1>
+            <section class="shipping-container">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Apellido:</label>
+                    <input type="text" name="lastName" id="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="dni">Dni:</label>
+                    <input type="text" name="dni" id="dni">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefono:</label>
+                    <input type="text" name="phone" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="name">Email:</label>
+                    <input type="email" name="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="adress">Dirección:</label>
+                    <input type="text" name="adress" id="adress">
+                </div>
+                <div class="form-group">
+                    <label for="country">Pais:</label>
+                    <input type="text" name="country" id="country">
+                </div>
+                <div class="form-group">
+                    <label for="province">Provincia:</label>
+                    <input type="text" name="province" id="province">
+                </div>
+                <div class="form-group">
+                    <label for="city">Ciudad:</label>
+                    <input type="text" name="city" id="city">
+                </div>
+                <div class="form-group">
+                    <label for="postalCode">Codigo Postal:</label>
+                    <input type="text" name="postalCode" id="postalCode">
+                </div>
+            </section>
+            <section id="way-to-pay" class="way-to-pay">
+                <h1>FORMAS DE PAGO</h1>
+                <form class="choose-way">
+                    <label>
+                        <input type="radio" name="opcion" value="Transferencia" class="radio-button">
+                        TRANSFERENCIA
+                    </label>
+                    <label>
+                        <input type="radio" name="opcion" value="MercadoPAGO" class="radio-button">
+                        MERCADO PAGO
+                    </label>
+                </form>
+            </section>            
+        </div>
+        <section class="complete-actions">
+            <div class="cupones">
+                <section class="accounts">
+                    <h2>TOTAL DEL CARRITO</h2>
+                    <div class="sum-buy">
+                        <div class="sub prices">SUBTOTAL:</div>
+                        <div class="price-accounts prices" id="subtotal-price">$0</div>
+                    </div>
+                    <div class="sum-buy">
+                        <div class="send prices">ENVÍO:</div>
+                        <div class="price-accounts prices"id="send-price">$0</div>
+                    </div>
+                    <div class="final-total">
+                        <div class="total fprices">TOTAL:</div>
+                        <div class="price-final fprices"id="total-price">$0</div>
+                    </div>
+                </section>
+                <label>Ingresa tu Cupón de Descuento:</label>
+                <input type="text" id="cupon-field" name="cupon-field" placeholder="Codigo de Cupón">
+            </div>
+            <div id="actions-buttons" class="actions-buttons">
+                <button class="complete-buy" id="complete-buy" onclick="showOrderShipping()">COMPLETAR COMPRA</button>
+                <button class="complete-buy" id="finish-buy">ELEGIR FORMA DE PAGO</button>
+                <button class="keep-buying" id="keep-buying" onclick="goHome()">SEGUIR COMPRANDO</button>
+            </div>
+        </section>
+    </div>
+    </main>
+    <footer>
+        <div class="final-info">
+            <img class="logo-Footter" src="../assets/VIONZAletras.svg" alt="VIONZA">
+            
+            <div class="info-extra1">
+                <h4>AYUDA & SERVICIOS</h4>
+                <ul>
+                    <li>Preguntas Frecuentes</li>
+                    <li>Políticas de Cambio</li>
+                    <li>Cuidado del calzado</li>
+                    <li>Tabla de Talles</li>
+                </ul>
+            </div>
+            <div class="Newsletter">
+                <h4>NEWSLETTER</h4>
+                <p>Suscribite para recibir información exclusiva sobre nuestros productos, lanzamientos & descuentos.</p>
+                <input type="text" id="email-Field" name="email-Field" placeholder="EMAIL*">
+                <div class="followus">FOLLOW US</div>
+                <section class="socialmedia-logos">
+                    <img src="../assets/whatsapp.png" alt="wsplogo">
+                    <img src="../assets/instagram.png" alt="wsplogo">
+                    <img src="../assets/facebook.png" alt="wsplogo">
+                </section>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="../main.js"></script>
+<script src="details.js"></script>
+</html>
