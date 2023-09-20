@@ -1,5 +1,7 @@
 //instalar express
 const express = require('express');
+//cargar var de entorno
+require('dotenv').config();
 //npm install body-parser
 const bodyParser = require('body-parser');
 const repositoryBD = require("./repositoryBD");

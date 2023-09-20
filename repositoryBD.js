@@ -1,10 +1,13 @@
 const {google} = require('googleapis');
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: 'your-secret-key.json',
+  credentials: {
+    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_CLIENT_EMAIL,
+    private_key: process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  },
+  projectId: process.env.GOOGLE_SERVICE_ACCOUNT_PROJECT_ID,
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
-
 const sheets = google.sheets({version: 'v4', auth:auth});
 
 async function read(){

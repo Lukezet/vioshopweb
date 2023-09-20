@@ -3,3 +3,4 @@ token.json
 your-secret-key.json
 node_modules
 .vscode/*
+.env
