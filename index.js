@@ -142,10 +142,10 @@ app.get('/feedback', async (req, res) => {
     const status = payment.body.status;
     await repositoryBD.updateOrderByPreferenceId(preferenceId,status);
 
-    res.sendFile(require.resolve("./frontend/index.html"))
+    res.sendFile(require.resolve("./Frontend/index.html"))
 });
 
-app.use("/",express.static("frontend"));
+app.use("/",express.static("Frontend"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
