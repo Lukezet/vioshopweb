@@ -20,7 +20,7 @@ function displayProducts(productList){
     productsHTML+=
       `<div class="shoes" onclick="goToDetailProducts(${element.id})">
         <div class="img-container">
-          <img src="${element.image}" class="shoes-img" alt="shoeimg">
+          <img src="${element.image}" loading="lazy" class="shoes-img" alt="shoeimg">
           <button class="shop-cart">
               <div class="add-shoes">
                   <img src="assets/bag-2.svg" alt="buy">
@@ -67,6 +67,7 @@ function goHome() {
   //   window.location.href = "/screens/detail-products.html";
   // }, 500);
 }
+const carrito =document.getElementById('carritoImg')
 
 window.addEventListener('scroll', function () {
     // Obtener la altura del contenido visible en la ventana
@@ -74,37 +75,31 @@ window.addEventListener('scroll', function () {
     // Obtener la posición vertical actual del scroll
     const scrollY = window.scrollY;
     
-
-    // Seleccionar el elemento de la imagen
-  const carritoImg = document.getElementById('carritoImg');
-
-    // Definir los nombres de archivo para cada estado
-    const filenameOnTop = '/assets/bag-2.svg';
-    const filenameOnBottom = '/assets/bag.svg';
-
     let arrayMenu = document.querySelectorAll('.menuletters');
-
-
     // Si la posición del scroll ha pasado la altura del contenido
-    if (scrollY >= contentHeight) {
-      // Agregar la clase 'dark-mode' a la navegación
-      document.querySelector('.menu-btn').classList.add('dark-mode');
-      document.querySelector('.brand-name2').classList.add('showLog');
-      document.querySelector('.nav-mobile').classList.add('showProducts');
-      
-      arrayMenu.forEach(element => element.classList.add('menuX'));
-      //cambiamos por la imagen negra
-      carritoImg.src = filenameOnBottom;
-    } else {
-      // Si no, remover la clase 'dark-mode' de la navegación
-      document.querySelector('.menu-btn').classList.remove('dark-mode');
-      document.querySelector('.brand-name2').classList.remove('showLog');
-      document.querySelector('.nav-mobile').classList.remove('showProducts');
-      
-      arrayMenu.forEach(element => element.classList.remove('menuX'));
-      carritoImg.src = filenameOnTop;
+    
+    if (carrito){
+      if (scrollY >= contentHeight+200) {
+        // Agregar la clase 'dark-mode' a la navegación
+        document.querySelector('.menu-btn').classList.add('dark-mode');
+        document.querySelector('.brand-name2').classList.add('showLog');
+        document.querySelector('.nav-mobile').classList.add('showProducts');
+        document.getElementById('carritoImg').classList.add('inverted-svg')
+        arrayMenu.forEach(element => element.classList.add('menuX'));
+        //cambiamos por la imagen negra
+        // carritoImg.src = filenameOnBottom;
+      } else {
+        // Si no, remover la clase 'dark-mode' de la navegación
+        document.querySelector('.menu-btn').classList.remove('dark-mode');
+        document.querySelector('.brand-name2').classList.remove('showLog');
+        document.querySelector('.nav-mobile').classList.remove('showProducts');
+        document.getElementById('carritoImg').classList.remove('inverted-svg')
+        arrayMenu.forEach(element => element.classList.remove('menuX'));
+        // carritoImg.src = filenameOnTop;
+      }
     }
-  });
+
+});
   
 const amountSelection = document.querySelectorAll('.amount-selection');
 

@@ -93,6 +93,9 @@ nav {
 .cart img {
     height: 4rem;
 }
+.inverted-svg {
+    filter: invert(100%);
+  }
 .cart2{
     display: none;
 }
@@ -781,7 +784,7 @@ nav .menu{
     height: 6.4rem;
     width: 70%;
     position: absolute;
-    bottom: 20rem;
+    bottom: 12rem;
     display: flex;
     align-items: center;
     justify-content: center;
