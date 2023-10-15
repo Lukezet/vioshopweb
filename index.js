@@ -9,6 +9,7 @@ const mercadopago = require('mercadopago');
 
 const app = express()
 const port = process.env.PORT || 3000;
+const appUrl = process.env.APP_URL || `http://localhost:3000`;
 
 // Agrega credenciales
 mercadopago.configure({
@@ -31,9 +32,9 @@ app.post('/api/pay', async (req, res) => {
     let preference = {
         items: [],
         back_urls: {
-            "success": `http://localhost:${port}/feedback`,
-            "failure": `http://localhost:${port}/feedback`,
-            "pending": `http://localhost:${port}/feedback`
+        "success": `${appUrl}/feedback`,
+        "failure": `${appUrl}/feedback`,
+        "pending": `${appUrl}/feedback`
 		},
 		auto_return: "approved",
       };
