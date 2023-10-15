@@ -31,9 +31,9 @@ app.post('/api/pay', async (req, res) => {
     let preference = {
         items: [],
         back_urls: {
-			"success": "http://localhost:3000/feedback",
-			"failure": "http://localhost:3000/feedback",
-			"pending": "http://localhost:3000/feedback"
+            "success": `http://localhost:${port}/feedback`,
+            "failure": `http://localhost:${port}/feedback`,
+            "pending": `http://localhost:${port}/feedback`
 		},
 		auto_return: "approved",
       };
