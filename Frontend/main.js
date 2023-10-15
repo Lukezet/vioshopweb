@@ -46,16 +46,20 @@ window.onload = async()=>{
   // Inicializa una variable para llevar un seguimiento de la cantidad total
   let cantidadTotal = 0;
   // Itera a través de los elementos y suma las cantidades
-  items.forEach(item => {
-      cantidadTotal += parseInt(item.cant, 10) || 0;
-  });
-  if (cantidadTotal) {
+  if (items && items.length > 0) {
+    // Aquí puedes usar el forEach para calcular la cantidad total
+    items.forEach(item => {
+        cantidadTotal += parseInt(item.cant, 10) || 0;
+    });
     const cantProdElements = document.querySelectorAll('.cantProd');
     cantProdElements.forEach(element => {
         element.style.display = 'flex';
         element.innerText = cantidadTotal;
     });
-  }
+} else {
+    // Si no hay datos en el localStorage, puedes manejarlo de acuerdo a tus necesidades
+    console.log('No hay elementos en el carrito en el localStorage.');
+}
   // Ahora, 'cantidadTotal' contiene la cantidad total de productos en el carrito
   console.log(`Cantidad total de productos en el carrito: ${cantidadTotal}`);
   displayProducts(productList);
