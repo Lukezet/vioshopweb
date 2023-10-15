@@ -88,6 +88,7 @@ nav {
 .cart {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .cart img {
@@ -367,6 +368,20 @@ h2{
     height: 1.8rem;
     font-size: 1.9rem;
     background-color: #000000;
+}
+.cantProd{
+    display: none;
+    bottom:0.4rem;
+    right: 0rem;
+    position:absolute;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    color: #ffffff;
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 1.5rem;
+    background-color: rgb(185, 130, 93);
 }
 .promo-slider{
     position: relative;
@@ -721,6 +736,7 @@ height: 5.5rem;
         border-radius: 0;        
 }
 video {
+    height: 120vh;
     border: none;
     border-radius:0;
 }

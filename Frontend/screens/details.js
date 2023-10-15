@@ -6,7 +6,14 @@ window.onload = async () => {
   const productId = urlParams.get('id');
   const talle = urlParams.get('talle');
   const cant = urlParams.get('cant');
-  
+  const currentPage = document.querySelector('html').getAttribute('data-page');
+
+  if (currentPage === 'shop-cart') {
+    //cargamos el carrito con productos agregados
+    let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
+    console.log(cartProducts);
+    updateCartDisplay(cartProducts);
+  } else{}
 
   if (productId) {
     const productList = await (await fetch('/api/products')).json();
@@ -465,10 +472,10 @@ function updateCartDisplay(cartProducts) {
 
 
 // Llamar a esta función al cargar la página para mostrar los productos previamente guardados en el localStorage
-// function loadCartFromLocalStorage() {
-//   const cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
-//   updateCartDisplay(cartProducts);
-// }
+function loadCartFromLocalStorage() {
+  const cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+  updateCartDisplay(cartProducts);
+}
 // Llamar a esta función para borrar los productos del carrito y del localStorage
 function clearCart() {
   localStorage.removeItem('cartProducts');

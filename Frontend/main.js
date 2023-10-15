@@ -42,6 +42,22 @@ function displayProducts(productList){
 window.onload = async()=>{
   const productList = await (await fetch("/api/products")).json();
   // console.log(productList[0]);
+  let items = JSON.parse(localStorage.getItem('cartProducts'));
+  // Inicializa una variable para llevar un seguimiento de la cantidad total
+  let cantidadTotal = 0;
+  // Itera a través de los elementos y suma las cantidades
+  items.forEach(item => {
+      cantidadTotal += parseInt(item.cant, 10) || 0;
+  });
+  if (cantidadTotal) {
+    const cantProdElements = document.querySelectorAll('.cantProd');
+    cantProdElements.forEach(element => {
+        element.style.display = 'flex';
+        element.innerText = cantidadTotal;
+    });
+  }
+  // Ahora, 'cantidadTotal' contiene la cantidad total de productos en el carrito
+  console.log(`Cantidad total de productos en el carrito: ${cantidadTotal}`);
   displayProducts(productList);
 }
 
