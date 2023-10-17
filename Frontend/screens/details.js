@@ -4,9 +4,8 @@ let order = {
 window.onload = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('id');
-  const talle = urlParams.get('talle');
-  const cant = urlParams.get('cant');
   const currentPage = document.querySelector('html').getAttribute('data-page');
+  
   //chequear en que html estamos
   if (currentPage === 'shop-cart') {
     //cargamos el carrito con productos agregados
@@ -14,6 +13,99 @@ window.onload = async () => {
     console.log(cartProducts);
     updateCartDisplay(cartProducts);
   } else{
+    const productList = await (await fetch('/api/products')).json();
+    const product = productList.find(item => item.id === parseInt(productId));
+    // Actualiza los elementos de la página con los detalles del producto
+    document.getElementById('name-product').innerText = product.name;
+    document.getElementById('mainProductImage').src = '/'+product.image;
+    document.getElementById('ProductImage1').src = '/'+product.image;
+    document.getElementById('ProductImage2').src = '/'+product.image2;
+    document.getElementById('ProductImage3').src = '/'+product.image3;
+    document.getElementById('secondProductImage1').src = '/'+product.image;
+    document.getElementById('secondProductImage2').src = '/'+product.image2;
+
+    document.getElementById('descriptionP').innerText = product.description;
+    document.getElementById('real-price').innerText = `$${product.price}`;
+    if (product.image3) 
+    {
+      document.getElementById('secondProductImage3').src = '/' + product.image3;
+    }
+    else{
+      document.getElementById('ProductImage3').src = '/'+product.image2;
+    }
+
+    //Seleccionamos las imagenes para ir cambiando entre ellas
+    let mainImg= document.getElementById('mainProductImage');
+    let smallImg1= document.getElementById('secondProductImage1');
+    let smallImg2= document.getElementById('secondProductImage2');
+    let smallImg3= document.getElementById('secondProductImage3');
+
+    smallImg1.onclick = function(){
+      mainImg.src=smallImg1.src;
+    }
+    smallImg2.onclick = function(){
+      mainImg.src=smallImg2.src;
+    }
+    smallImg3.onclick = function(){
+      mainImg.src=smallImg3.src;
+    }
+    
+      //comparamos total de talles con los disponibles
+    let arrayMenu = document.querySelectorAll('.numero-talle');//lista de talles en pantalla    
+    let buttonAddCart = document.querySelector('.add-cart');//Button Agregar al carrito
+    console.log(arrayMenu);
+    
+    // Inhabilitar por defecto el botón add-cart hasta que se seleccione algún talle
+    buttonAddCart.style.pointerEvents = "none";
+       arrayMenu.forEach(function(tallaElement) {
+      var talla =tallaElement.textContent.trim();
+        
+        // Verifica si la talla actual está en el array de tallas disponibles
+      if (!product.talles[talla]>=1) { 
+        tallaElement.classList.add("no-disponible"); // Agrega una clase css para indicar disponibilidad
+        tallaElement.style.pointerEvents = "none";
+      }
+      // inhabilitar por defecto el botón add-cart hasta que se seleccione algun talle
+      buttonAddCart.style.pointerEvents = "none";          
+      
+      ////EVENTO ELEGIMOS TALLES switchea entre los talles
+      tallaElement.addEventListener('click', function() {
+      // Remover la clase "selected-size" de todos los elementos
+        arrayMenu.forEach(function(element) {
+          element.classList.remove("selected-size");
+        });
+        // Aplicar el estilo de selección al elemento clicado
+        console.log(talla)
+        tallaElement.classList.add("selected-size");
+        buttonAddCart.style.pointerEvents = "auto";
+        buttonAddCart.classList.add("addingToCart")
+        // verifico la cantidad por talle seleccionado para enviarlo al widget de cantidad
+        let contadorDeTalles = 0;
+        contadorDeTalles = product.talles[talla];
+        let amountInput = document.querySelector('.amount-input');
+        amountInput.value = 1;
+        amountInput.max = contadorDeTalles;        
+          
+      });
+    });
+    //EVENTO CUANDO AGREGAMOS AL CARRITO
+    buttonAddCart.addEventListener('click', function(){
+      const idProducto = product.id; // Reemplaza con el valor real del ID
+      const precioProducto = product.price; // Reemplaza con el valor real del precio
+  
+      add(idProducto, precioProducto);
+      
+        // Obtener el talle seleccionado y la cantidad
+      const selectedSizeElement = document.querySelector('.selected-size');
+      const selectedTalla = selectedSizeElement.textContent.trim();
+      const amountInput = document.querySelector('.amount-input');
+  
+      console.log("1) agregaste " + amountInput.value + " zapatos "+ product.name+" talle: " + selectedTalla )
+        
+      addCartProduct(product,selectedTalla,amountInput.value);                    
+      
+      window.location.href = `shop-cart.html?id=${idProducto}&talle=${selectedTalla}&cant=${amountInput.value}`;
+    })      
     //Carrousel o Slider de detalle de productos
     const carrousel = document.querySelector("#carrousel");
     let carrouselSection = document.querySelectorAll(".carrousel-section");
@@ -47,124 +139,7 @@ window.onload = async () => {
     }
     btnRight.addEventListener('click', function(){Next();})
     btnLeft.addEventListener('click', function(){Prev();})
-  }
-
-  if (productId) {
-    const productList = await (await fetch('/api/products')).json();
-    const product = productList.find(item => item.id === parseInt(productId));
-    if (product && talle && cant) 
-    {  
-      let cartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-      updateCartDisplay(cartProducts);// Mostrar los productos en el carrito
-      // loadCartFromLocalStorage()
-    }   
-
-    if (product&& !talle && !cant) {
-      console.log(productId);
-      console.log(product.talles);
-      // Actualiza los elementos de la página con los detalles del producto
-      document.getElementById('name-product').innerText = product.name;
-      document.getElementById('mainProductImage').src = '/'+product.image;
-      document.getElementById('secondProductImage1').src = '/'+product.image;
-      document.getElementById('secondProductImage2').src = '/'+product.image2;
-      document.getElementById('descriptionP').innerText = product.description;
-      document.getElementById('real-price').innerText = `$${product.price}`;
-      if (product.image3!="") 
-      {
-        document.getElementById('secondProductImage3').src = '/' + product.image3;
-      }
-      else
-      {
-        document.getElementById('secondProductImage3').style.pointerEvents = "none";
-      }
-      //Seleccionamos las imagenes para ir cambiando entre ellas
-      let mainImg= document.getElementById('mainProductImage');
-      let smallImg1= document.getElementById('secondProductImage1');
-      let smallImg2= document.getElementById('secondProductImage2');
-      let smallImg3= document.getElementById('secondProductImage3');
-
-      smallImg1.onclick = function(){
-        mainImg.src=smallImg1.src;
-      }
-      smallImg2.onclick = function(){
-        mainImg.src=smallImg2.src;
-      }
-      smallImg3.onclick = function(){
-        mainImg.src=smallImg3.src;
-      }  
-      // Actualiza otros elementos con más detalles del producto si es necesario
-    }//onclick="add(${element.id}, ${element.price})"
-    else {
-      console.error(`Producto con ID ${productId} no encontrado.`);
-    }
-    //comparamos total de talles con los disponibles
-    let arrayMenu = document.querySelectorAll('.numero-talle');//lista de talles en pantalla    
-    let buttonAddCart = document.querySelector('.add-cart');//Button Agregar al carrito
-    console.log(arrayMenu);
-    
-    // Inhabilitar por defecto el botón add-cart hasta que se seleccione algún talle
-    buttonAddCart.style.pointerEvents = "none";
-
-    arrayMenu.forEach(function(tallaElement) {
-      var talla =tallaElement.textContent.trim();
-      
-      // Verifica si la talla actual está en el array de tallas disponibles
-      if (!product.talles[talla]>=1) { 
-        tallaElement.classList.add("no-disponible"); // Agrega una clase css para indicar disponibilidad
-        tallaElement.style.pointerEvents = "none";
-      }
-      // inhabilitar por defecto el botón add-cart hasta que se seleccione algun talle
-      buttonAddCart.style.pointerEvents = "none";          
-      
-      ////EVENTO ELEGIMOS TALLES switchea entre los talles
-      tallaElement.addEventListener('click', function() {
-      // Remover la clase "selected-size" de todos los elementos
-        arrayMenu.forEach(function(element) {
-          element.classList.remove("selected-size");
-        });
-        // Aplicar el estilo de selección al elemento clicado
-        console.log(talla)
-        tallaElement.classList.add("selected-size");
-        buttonAddCart.style.pointerEvents = "auto";
-        buttonAddCart.classList.add("addingToCart")
-        // verifico la cantidad por talle seleccionado para enviarlo al widget de cantidad
-        let contadorDeTalles = 0;
-        contadorDeTalles = product.talles[talla];
-        let amountInput = document.querySelector('.amount-input');
-        amountInput.value = 1;
-        amountInput.max = contadorDeTalles;        
-        
-      });
-    });
-
-    //EVENTO CUANDO AGREGAMOS AL CARRITO
-    buttonAddCart.addEventListener('click', function(){
-      const idProducto = product.id; // Reemplaza con el valor real del ID
-      const precioProducto = product.price; // Reemplaza con el valor real del precio
-
-      add(idProducto, precioProducto);
-      
-      // Obtener el talle seleccionado y la cantidad
-      const selectedSizeElement = document.querySelector('.selected-size');
-      const selectedTalla = selectedSizeElement.textContent.trim();
-      const amountInput = document.querySelector('.amount-input');
-
-      console.log("1) agregaste " + amountInput.value + " zapatos "+ product.name+" talle: " + selectedTalla )
-      
-      addCartProduct(product,selectedTalla,amountInput.value);                    
-      
-      window.location.href = `shop-cart.html?id=${idProducto}&talle=${selectedTalla}&cant=${amountInput.value}`;
-    })
-  }
-  // let products = [];
-  // let total = 0;
-  // function add(product, price){
-  //     console.log(product, price);
-  //     products.push(product);
-  //     total = total + price; 
-  //     console.log("en total sumamos="+total);
-  // }
-
+  }  
 }
 
 let finishBuy = document.getElementById('finish-buy');
