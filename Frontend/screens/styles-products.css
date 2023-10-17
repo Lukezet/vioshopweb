@@ -105,6 +105,9 @@ nav {
 .cart2{
     display: none;
 }
+.container-carrousel{
+    display: none;
+}
 .images-container{
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -806,6 +809,66 @@ footer{
     width: 16rem;
     height: 5.5rem;
     }
+
+    .container-carrousel{
+        display: block;
+        width: 100%;
+        max-width: 900px;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+        
+      }
+      @media (max-width: 880px) {
+      .container-carrousel {
+          max-width: 100%;
+
+    }}
+    
+    .carrousel{
+        display: flex;
+        width: 300%;
+        height: 100%;
+      }
+    @media (max-width: 415px) {
+      .container-carrousel{
+          height: 100%;
+    
+    } 
+    .carrousel{
+        height: 100%;
+      }
+    
+        }
+    
+      .carrousel-section{
+        width: 100%;
+    
+      }
+      .carrousel-img{
+        display: block;
+        height: 100%;
+        width: 100%;
+    
+        object-fit: cover;
+        margin-left: -100%;
+      }
+      .btn-carrousel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        height: 40px;
+        width: 40px;
+        background: rgba(255, 255, 255, 0.5);
+        top: 43%;
+        font-size: 3rem;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .btn-carrousel-left{left:5px}
+      .btn-carrousel-right{right: 5px;}
+    
     main{
         padding-top: 0;
     }
@@ -814,6 +877,9 @@ footer{
     }
     .main-image img{
         width: 100%;
+    }
+    #mainProductImage{
+        display: none;
     }
     .image-column {
         display: none;

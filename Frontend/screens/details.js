@@ -7,13 +7,47 @@ window.onload = async () => {
   const talle = urlParams.get('talle');
   const cant = urlParams.get('cant');
   const currentPage = document.querySelector('html').getAttribute('data-page');
-
+  //chequear en que html estamos
   if (currentPage === 'shop-cart') {
     //cargamos el carrito con productos agregados
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
     console.log(cartProducts);
     updateCartDisplay(cartProducts);
-  } else{}
+  } else{
+    //Carrousel o Slider de detalle de productos
+    const carrousel = document.querySelector("#carrousel");
+    let carrouselSection = document.querySelectorAll(".carrousel-section");
+    let carrouselSectionLast = carrouselSection[carrouselSection.length -1];
+
+    const btnLeft = document.querySelector("#btn-left");
+    const btnRight = document.querySelector("#btn-right");
+
+    carrousel.insertAdjacentElement('afterbegin',carrouselSectionLast);//obtengo el ultimo elemento y lo coloco en el carrousel
+
+    function Next(){
+        let carrouselSectionFirst = document.querySelectorAll(".carrousel-section")[0];
+        carrousel.style.marginLeft = "-100%";
+        carrousel.style.transition = "all 0.7s";
+        setTimeout(function(){
+            carrousel.style.transition = "none";
+            carrousel.insertAdjacentElement('beforeend',carrouselSectionFirst);
+            carrousel.style.marginLeft = "0";
+        },700);
+    }
+    function Prev(){
+        let carrouselSection = document.querySelectorAll(".carrousel-section");
+        let carrouselSectionLast = carrouselSection[carrouselSection.length -1];
+        carrousel.style.marginLeft = "100%";
+        carrousel.style.transition = "all 0.7s";
+        setTimeout(function(){
+            carrousel.style.transition = "none";
+            carrousel.insertAdjacentElement("afterbegin",carrouselSectionLast);
+            carrousel.style.marginLeft = "0";
+        },700)
+    }
+    btnRight.addEventListener('click', function(){Next();})
+    btnLeft.addEventListener('click', function(){Prev();})
+  }
 
   if (productId) {
     const productList = await (await fetch('/api/products')).json();
