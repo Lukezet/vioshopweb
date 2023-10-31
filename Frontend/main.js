@@ -1,4 +1,5 @@
 let products = [];
+let productList = [];
 let total = 0;
 function add(product, price){
     console.log(product, price);
@@ -7,14 +8,7 @@ function add(product, price){
     console.log(total);
 }
 
-// function pay(product, price){
-//   const productList = 
-//   window.alert(products.join(","));
-// }
-
-//---- Cargamos los productos
-
-function displayProducts(productList){
+function displayProducts(){
   let productsHTML='';
   productList.forEach(element =>{
     productsHTML+=
@@ -36,11 +30,44 @@ function displayProducts(productList){
         </div>
       </div>`
   });
-  document.getElementById('shoesgrid').innerHTML= productsHTML;
+  document.getElementById('shoesgrid').innerHTML = productsHTML;
+}
+
+function filterProducts(tag){
+  let listFiltered=[]
+  let productsHTML='';
+  if (tag == 'all'){
+    displayProducts();
+  }
+  else{
+    listFiltered = productList.filter((p) => p.category === tag);
+    listFiltered.forEach(element =>{
+      productsHTML+=
+        `<div class="shoes" onclick="goToDetailProducts(${element.id})">
+          <div class="img-container">
+            <img src="${element.image}" loading="lazy" class="shoes-img" alt="shoeimg">
+            <button class="shop-cart">
+                <div class="add-shoes">
+                    <img src="assets/bag-2.svg" alt="buy">
+                    <div class="plus">+</div>
+                </div>
+            </button>
+            <div class="discount">%10</div>
+          </div>
+          <div class="description-shoes">
+            <div>${element.name}</div>
+            <em>$${element.price}</em>
+            <em class="old-price">$${element.price+3800}</em>
+          </div>
+        </div>`
+    });
+    document.getElementById('shoesgrid').innerHTML = productsHTML;
+  }
+
 }
 
 window.onload = async()=>{
-  const productList = await (await fetch("/api/products")).json();
+  productList = await (await fetch("/api/products")).json();
   // console.log(productList[0]);
   let items = JSON.parse(localStorage.getItem('cartProducts'));
   // Inicializa una variable para llevar un seguimiento de la cantidad total
@@ -62,7 +89,7 @@ window.onload = async()=>{
 }
   // Ahora, 'cantidadTotal' contiene la cantidad total de productos en el carrito
   console.log(`Cantidad total de productos en el carrito: ${cantidadTotal}`);
-  displayProducts(productList);
+  displayProducts();
 }
 
 
