@@ -83,14 +83,14 @@ window.onload = async()=>{
         element.style.display = 'flex';
         element.innerText = cantidadTotal;
     });
-} else {
+  } else {
     // Si no hay datos en el localStorage, puedes manejarlo de acuerdo a tus necesidades
     console.log('No hay elementos en el carrito en el localStorage.');
-}
-  // Ahora, 'cantidadTotal' contiene la cantidad total de productos en el carrito
-  console.log(`Cantidad total de productos en el carrito: ${cantidadTotal}`);
-  displayProducts();
-}
+  }
+    // Ahora, 'cantidadTotal' contiene la cantidad total de productos en el carrito
+    console.log(`Cantidad total de productos en el carrito: ${cantidadTotal}`);
+    displayProducts();
+  }
 
 
 document.querySelector('.menu-btn').addEventListener('click', ()=>{

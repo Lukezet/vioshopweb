@@ -10,9 +10,36 @@ window.onload = async () => {
   if (currentPage === 'shop-cart') {
     //cargamos el carrito con productos agregados
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
+    let cantidadTotal = 0;
+    // Itera a través de los elementos y suma las cantidades
+    if (cartProducts && cartProducts.length > 0) {
+      // Aquí puedes usar el forEach para calcular la cantidad total
+      cartProducts.forEach(item => {
+          cantidadTotal += parseInt(item.cant, 10) || 0;
+      });
+      const cantProdElements = document.querySelectorAll('.cantProd');
+      cantProdElements.forEach(element => {
+          element.style.display = 'flex';
+          element.innerText = cantidadTotal;
+      })
+    }
     console.log(cartProducts);
     updateCartDisplay(cartProducts);
   } else{
+    let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
+    let cantidadTotal = 0;
+    // Itera a través de los elementos y suma las cantidades
+    if (cartProducts && cartProducts.length > 0) {
+      // Aquí puedes usar el forEach para calcular la cantidad total
+      cartProducts.forEach(item => {
+          cantidadTotal += parseInt(item.cant, 10) || 0;
+      });
+      const cantProdElements = document.querySelectorAll('.cantProd');
+      cantProdElements.forEach(element => {
+          element.style.display = 'flex';
+          element.innerText = cantidadTotal;
+      })
+    }
     const productList = await (await fetch('/api/products')).json();
     const product = productList.find(item => item.id === parseInt(productId));
     // Actualiza los elementos de la página con los detalles del producto

@@ -19,12 +19,13 @@
         <ul class="menu">
             <li><a href="#">Botas</a></li>
             <li><a href="#">Borcegos</a></li>
-            <li class="brand-name"><img src="/assets/VIONZAletrasNegro.svg" alt="Logo"></li>
+            <li class="brand-name"><img onclick="goHome()" src="/assets/VIONZAletrasNegro.svg" loading="lazy" alt="Logo"></li>
             <li><a href="#">Texanas</a></li>
             <li><a href="#">Zapatillas</a></li>
         </ul>
         <div class="cart">
             <img src="/assets/bag.svg" loading="lazy" alt="Carrito">
+            <div class="cantProd" id="cantProd"></div>
         </div>
     </nav>
     <div class="nav-mobile">
@@ -32,10 +33,11 @@
             <i class="fas fa-bars"></i>
         </div>
         <div class="brand-name2">
-            <img src="/assets/VIONZAletrasNegro.svg" loading="lazy" alt="Logo">
+            <img onclick="goHome()" src="/assets/VIONZAletrasNegro.svg" loading="lazy" alt="Logo">
         </div>
         <div class="cart2">
             <img src="/assets/bag.svg" loading="lazy" alt="Carrito">
+            <div class="cantProd" id="cantProd"></div>
         </div>
     </div>
     <!-- </header> -->
@@ -50,13 +52,13 @@
                 <div class="container-carrousel">
                     <div class="carrousel" id="carrousel">
                       <div class="carrousel-section">
-                        <img id="ProductImage1" src="/assets/no-image.jpg" alt="" class="carrousel-img">
+                        <img id="ProductImage1" src="/assets/no-image.jpg" loading="lazy" alt="" class="carrousel-img">
                       </div>
                       <div class="carrousel-section">
-                        <img id="ProductImage2" src="/assets/no-image.jpg" alt="" class="carrousel-img">
+                        <img id="ProductImage2" src="/assets/no-image.jpg" loading="lazy" alt="" class="carrousel-img">
                       </div>
                       <div class="carrousel-section">
-                        <img id="ProductImage3" src="/assets/no-image.jpg" alt="" class="carrousel-img">
+                        <img id="ProductImage3" src="/assets/no-image.jpg" loading="lazy" alt="" class="carrousel-img">
                       </div>
                       <!-- <div class="carrousel-section">
                         <img src="/assets/img/webDesign4.png" alt="" class="carrousel-img">
