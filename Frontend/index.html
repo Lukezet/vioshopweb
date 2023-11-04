@@ -18,11 +18,11 @@
                     <button><img src="assets/search-normal.svg" alt="Buscar"></button>
                 </div>
                 <ul class="menu">
-                    <li><a class="menuletters"href="#">Botas</a></li>
-                    <li><a class="menuletters"href="#">Borcegos</a></li>
+                    <li><a href="#shoesgrid" class="menuletters" onclick="filterProducts('eva')" href="#">Eva</a></li>
+                    <li><a href="#shoesgrid" class="menuletters" onclick="filterProducts('plataforma')" href="#">Plataforma</a></li>
                     <li class="brand-name"><a class="menuletters" href="index.html"><img src="assets/VIONZAletras.svg" alt="Logo"></a></li>
-                    <li><a class="menuletters" href="#">Texanas</a></li>
-                    <li><a class="menuletters" href="#">Zapatillas</a></li>
+                    <li><a href="#shoesgrid" class="menuletters" onclick="filterProducts('sandalia')" href="#">Sandalias</a></li>
+                    <li><a href="#shoesgrid" class="menuletters" onclick="filterProducts('all')" href="#">Todos</a></li>
                 </ul>
                 <div class="cart">
                     <a href="screens/shop-cart.html">
@@ -73,22 +73,22 @@
     <main>
         <div class="models" id="models">
             <div class="type-shoes">
-                <div class="card-typeshoes" onclick="filterProducts('eva')">
-                    <div class="name-typeshoes">EVA</div>
-                    <img src="assets/shoes-pic/05.jpg" loading="lazy" alt="logo">    
-                </div>
-                <div class="card-typeshoes" onclick="filterProducts('plataforma')">
+                <a href="#shoesgrid" class="card-typeshoes" onclick="filterProducts('eva')">
+                        <div class="name-typeshoes">EVA</div>
+                        <img src="assets/shoes-pic/05.jpg" loading="lazy" alt="logo">   
+                </a>
+                <a href="#shoesgrid" class="card-typeshoes" onclick="filterProducts('plataforma')">
                     <div class="name-typeshoes">PLATAFORMA</div>
                     <img src="assets/shoes-pic/cloy2.jpg" loading="lazy" alt="logo">    
-                </div>
-                <div class="card-typeshoes" onclick="filterProducts('sandalia')">
+                </a>
+                <a href="#shoesgrid" class="card-typeshoes" onclick="filterProducts('sandalia')">
                     <div class="name-typeshoes">SANDALIAS</div>
                     <img src="assets/shoes-pic/freya3.jpg" loading="lazy" alt="logo">    
-                </div>
-                <div class="card-typeshoes"  onclick="filterProducts('all')">
+                </a>
+                <a href="#shoesgrid" class="card-typeshoes"  onclick="filterProducts('all')">
                     <div class="name-typeshoes">TODOS</div>
                     <img src="assets/shoes-pic/madison2.jpg" loading="lazy" alt="logo">    
-                </div>
+                </a>
             </div>
             <div class="talles">
                 <h2>ELIGE TU TALLE</h2>

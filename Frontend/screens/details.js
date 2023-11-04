@@ -11,6 +11,10 @@ window.onload = async () => {
     //cargamos el carrito con productos agregados
     let cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
     let cantidadTotal = 0;
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    step1.classList.add('step-active');
     // Itera a través de los elementos y suma las cantidades
     if (cartProducts && cartProducts.length > 0) {
       // Aquí puedes usar el forEach para calcular la cantidad total
@@ -182,7 +186,8 @@ function showOrderShipping(){
   
   let completeBuy = document.getElementById('complete-buy');
   
-
+  step1.classList.remove('step-active');
+  step2.classList.add('step-active');
   tableDetail.style.display='none';
   fieldName.style.display='none';
   orderShipping.style.display='flex';
@@ -212,6 +217,8 @@ function CompleteShippingData(){
     }
     });
   if(shippingFormOk==true){
+    step2.classList.remove('step-active');
+    step3.classList.add('step-active');
     
     formInputs.forEach(input => {
       input.disabled= true;

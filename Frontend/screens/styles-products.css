@@ -704,7 +704,7 @@ footer{
         align-items: center;
         margin-left: 0;
         width: 90%;
-        margin-top: 5rem;
+        margin-top: 3rem;
     } 
     .name-product{
         font-size: 5rem;
@@ -967,7 +967,7 @@ footer{
     .cart2 img{
         height: 4rem;
     }
-    .menu-btn{
+    .back-btn{
         position: absolute;
         top: 0.5rem;
         left: 2rem;
@@ -976,7 +976,6 @@ footer{
         align-self: start;
         font-size: 3rem;
         color: #242424;
-        padding-left: 1rem;
         z-index: 3;
     }
     .select-size{

@@ -209,6 +209,8 @@ main {
     flex-shrink: 0;
     font-size: 3.5rem;
     font-weight: 600;
+    color: #363636;
+    text-decoration: none;
     background: rgba(217, 217, 217, 0.69);
 
 }
@@ -877,7 +879,8 @@ nav .menu{
     display: flex;
     justify-content: center;
     align-items: start;
-    height: 23rem;
+    height: 26rem;
+    text-decoration: none;
     border-radius: 0px 0px 20px 20px;
     border: 0.2rem solid rgba(255, 255, 255, 0.50);
     background: linear-gradient(147deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.10) 100%);
