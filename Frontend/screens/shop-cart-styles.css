@@ -101,6 +101,7 @@ main {
 .step-active {
     background: #ff7f35;
     z-index: 3;
+    
     span{
         filter: none;
         color: #ffffff; 
