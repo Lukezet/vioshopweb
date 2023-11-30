@@ -93,9 +93,14 @@ window.onload = async()=>{
   }
 
 
-document.querySelector('.menu-btn').addEventListener('click', ()=>{
-    document.querySelector('.nav-menu').classList.toggle('show')
-});
+const menuBtn = document.querySelector('.menu-btn');
+if (menuBtn) {
+  menuBtn.addEventListener('click', () => {
+      document.querySelector('.nav-menu').classList.toggle('show');
+  });
+} else {
+  console.error('El elemento con la clase .menu-btn no se encontró en la nueva pantalla.');
+}  
 
 //! NAVIGATIONS
 

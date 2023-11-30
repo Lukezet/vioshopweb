@@ -113,24 +113,29 @@ window.onload = async () => {
         // verifico la cantidad por talle seleccionado para enviarlo al widget de cantidad
         let contadorDeTalles = 0;
         contadorDeTalles = product.talles[talla];
+        console.log(contadorDeTalles)
         let amountInput = document.querySelector('.amount-input');
         amountInput.value = 1;
         amountInput.max = contadorDeTalles;        
           
       });
     });
-    //EVENTO CUANDO AGREGAMOS AL CARRITO
+
+//EVENTO CUANDO AGREGAMOS AL CARRITO
     buttonAddCart.addEventListener('click', function(){
       const idProducto = product.id; // Reemplaza con el valor real del ID
       const precioProducto = product.price; // Reemplaza con el valor real del precio
-  
+
       add(idProducto, precioProducto);
       
         // Obtener el talle seleccionado y la cantidad
       const selectedSizeElement = document.querySelector('.selected-size');
       const selectedTalla = selectedSizeElement.textContent.trim();
-      const amountInput = document.querySelector('.amount-input');
-  
+      let amountInput = document.querySelector('.amount-input');
+      if (amountInput.value>product.talles[selectedTalla]){
+        amountInput.value=product.talles[selectedTalla]
+      }
+      debugger
       console.log("1) agregaste " + amountInput.value + " zapatos "+ product.name+" talle: " + selectedTalla )
         
       addCartProduct(product,selectedTalla,amountInput.value);                    
