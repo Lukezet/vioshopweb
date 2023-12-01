@@ -132,10 +132,10 @@ window.onload = async () => {
       const selectedSizeElement = document.querySelector('.selected-size');
       const selectedTalla = selectedSizeElement.textContent.trim();
       let amountInput = document.querySelector('.amount-input');
+      //verificamos si el monto es real
       if (amountInput.value>product.talles[selectedTalla]){
         amountInput.value=product.talles[selectedTalla]
       }
-      debugger
       console.log("1) agregaste " + amountInput.value + " zapatos "+ product.name+" talle: " + selectedTalla )
         
       addCartProduct(product,selectedTalla,amountInput.value);                    
@@ -263,6 +263,7 @@ radioButtons.forEach(function(radioButton) {
 
         }else{
           //limpiamos los posibles eventos antes de agregar uno
+          finishBuy.innerHTML = "PAGAR CON MERCADO PAGO, TARJETAS";
           finishBuy.removeEventListener("click", pay);
           finishBuy.removeEventListener("click", payByTransfer);
           //agregamos el evento de pagar por Mercado Pago
@@ -339,8 +340,10 @@ async function payByTransfer(){
         <div>Titular: Lucas Mauricio Yañez Bogni</div>
         <div>Whatsapp: 2644651005</div>
       </div>`;
-      paymentInfo.style.display = "block";
+
       alert("Tu numero de Orden es la: "+nOrder+" recuerda enviar comprobante a este numero:2644651005");
+      console.log("DADA",paymentInfo);
+      paymentInfo.style.display = "block";
     } else if (cartProductsList.status == 400 || cartProductsList.status==500) {
       // Mostrar el mensaje de "producto no disponible" en la interfaz de usuario
       clearCart(); // Limpia el carrito después de una compra sin exito
@@ -360,7 +363,7 @@ async function pay(){
   //activo los input para poder leerlos
   formInputs.forEach(input => {
     input.disabled= false;
-    });  
+    }); 
   //traigo los productos que agregué al carrito
   let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
   //traigo los datos de envío para completar la orden de compra
@@ -399,7 +402,7 @@ async function pay(){
       // document.getElementById("page-content").innerHTML = "";
       // script.setAttribute("data-button-label","PAGAR CON MERCADO PAGO")
       document.querySelector("#actions-buttons").appendChild(script);
-      
+      finishBuy.style.display = "none" 
       clearCart(); // Limpia el carrito después de una compra exitosa
       console.log("La compra fue realizada con exito!"); 
       document.getElementById('name').disabled = true;
